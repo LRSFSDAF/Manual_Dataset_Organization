@@ -1,0 +1,8 @@
+__pycache__
+.vscode
+船体分割/
+各部分分割/
+FreiHAND/
+models/
+output_vis_freihand/
+人手数据集整理计划.md
