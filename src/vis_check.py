@@ -8,19 +8,24 @@ if not hasattr(inspect, 'getargspec'):
 import cv2
 import numpy as np
 import os
+from pathlib import Path
 from freihand_reader import FreiHandReader
 
 # ================= 配置路径 =================
 
+# 以当前脚本所在目录为基准
+HERE = Path(__file__).resolve().parent
+# 项目根目录
+ROOT = HERE.parent
+
 # 1. 数据集根目录 (指向 FreiHAND_pub_v2)
-DATA_ROOT = "D:/My_file/processing/FreiHAND/FreiHAND_pub_v2"
+DATA_ROOT = str((ROOT / "FreiHAND" / "FreiHAND_pub_v2").resolve())
 
 # 2. MANO 模型路径 (指向 models/mano_v1_2/models/MANO_RIGHT.pkl)
-# 注意：路径中使用了正斜杠 / 以避免 Windows 反斜杠转义问题
-MANO_PATH = "D:/My_file/processing/models/mano_v1_2/models/MANO_RIGHT.pkl" 
+MANO_PATH = str((ROOT / "models" / "mano_v1_2" / "models" / "MANO_RIGHT.pkl").resolve())
 
-# 3. 输出目录 (结果会保存在代码上一级目录下)
-OUTPUT_DIR = "../output_vis_freihand"
+# 3. 输出目录 (结果会保存在项目根目录下)
+OUTPUT_DIR = str((ROOT / "output_vis_freihand").resolve())
 # ==========================================================
 
 def project_points(points_3d, K):
